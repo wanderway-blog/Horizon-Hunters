@@ -51,7 +51,7 @@ body.intro-playing {
     overflow: hidden;
 }
 
-body.home-intro-active:not(.page-loaded) > *:not(.arrival-intro) {
+body.home-intro-active.intro-playing:not(.page-loaded) > *:not(.arrival-intro) {
     opacity: 0;
     visibility: hidden;
 }
