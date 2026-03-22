@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="icons8-airplane-take-off-100.png">
+    <title>Country Guide | WanderWay</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .country-hero { min-height: 62vh; background-size: cover; background-position: center; position: relative; display: flex; align-items: center; justify-content: center; text-align: center; padding: 140px 20px 90px; }
+        .country-hero::before { content: ""; position: absolute; inset: 0; background: linear-gradient(rgba(20, 29, 35, 0.35), rgba(20, 29, 35, 0.75)); }
+        .country-hero-content { position: relative; z-index: 1; max-width: 760px; }
+        .country-kicker { display: inline-flex; align-items: center; gap: 10px; padding: 8px 18px; border-radius: 999px; background: rgba(255, 255, 255, 0.15); color: #fff; margin-bottom: 20px; backdrop-filter: blur(6px); }
+        .country-hero h1, .country-hero p { color: #fff; }
+        .country-hero h1 { font-size: 3.7rem; margin-bottom: 14px; }
+        .country-hero p { font-size: 1.08rem; max-width: 640px; margin: 0 auto; color: rgba(255, 255, 255, 0.88); }
+        .detail-grid { display: grid; grid-template-columns: 1.4fr 0.9fr; gap: 30px; }
+        .detail-panel, .detail-sidebar-card { background: var(--surface-color); border-radius: var(--radius-lg); box-shadow: var(--shadow-md); }
+        .detail-panel { padding: 34px; }
+        .detail-sidebar { display: grid; gap: 24px; align-content: start; }
+        .detail-sidebar-card { padding: 28px; }
+        .detail-sidebar-card h3, .detail-panel h2 { margin-bottom: 18px; }
+        .info-list, .highlight-grid { display: grid; gap: 14px; }
+        .highlight-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: 24px; }
+        .highlight-card { padding: 20px; border-radius: var(--radius-md); background: var(--secondary-color); }
+        .highlight-card h3 { font-size: 1.15rem; margin-bottom: 8px; }
+        .info-list li { padding: 14px 16px; background: var(--bg-color); border-radius: var(--radius-md); }
+        .story-copy p + p { margin-top: 16px; }
+        .cta-row { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 26px; }
+        .back-link { display: inline-flex; align-items: center; gap: 8px; color: var(--primary-color); font-weight: 600; }
+        .empty-state { max-width: 760px; margin: 0 auto; background: var(--surface-color); border-radius: var(--radius-lg); box-shadow: var(--shadow-md); padding: 40px; text-align: center; }
+        @media (max-width: 992px) { .detail-grid { grid-template-columns: 1fr; } }
+        @media (max-width: 768px) { .country-hero h1 { font-size: 2.6rem; } .highlight-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="icons8-airplane-take-off-100.png" alt="WanderWay Logo" class="logo-img">
+                Wander<span>Way</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="destinations.html" class="nav-link">Destinations</a></li>
+                <li><a href="blog.html" class="nav-link">Blog Hub</a></li>
+                <li><a href="topics.html" class="nav-link">Topics</a></li>
+                <li><a href="travel-guides.html" class="nav-link">Guides</a></li>
+                <li><a href="my-map.html" class="nav-link active">My Map</a></li>
+                <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <section class="country-hero" id="countryHero">
+        <div class="country-hero-content">
+            <div class="country-kicker"><i class="fas fa-location-dot"></i><span id="heroRegion">World Explorer</span></div>
+            <h1 id="heroTitle">Country Guide</h1>
+            <p id="heroSummary">Pick a country from the map to see its highlights, travel mood, and related ideas.</p>
+        </div>
+    </section>
+
+    <section id="detailSection">
+        <div class="container" id="detailContainer"></div>
+    </section>
+
+    <section class="newsletter">
+        <div class="newsletter-content">
+            <h2>Stay Updated</h2>
+            <p>Subscribe to our newsletter for the latest travel guides and tips</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Enter your email" required>
+                <button type="submit" class="btn-primary">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <a href="index.html" class="logo">
+                    <img src="icons8-airplane-take-off-100.png" alt="WanderWay Logo" class="logo-img">
+                    Wander<span>Way</span>
+                </a>
+                <p>Your gateway to world exploration</p>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="destinations.html">Destinations</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Destinations</h4>
+                <ul>
+                    <li><a href="destination-maldives.html">Maldives</a></li>
+                    <li><a href="destination-kyoto.html">Kyoto</a></li>
+                    <li><a href="destination-amalfi.html">Amalfi Coast</a></li>
+                    <li><a href="travel-guides.html">Swiss Alps</a></li>
+                    <li><a href="topics.html">Bali</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#">FAQs</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 WanderWay. All rights reserved. Made with <i class="fas fa-heart"></i> for travelers</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        const countryGuides = {
+            US: { name: "United States", region: "North America", image: "kyoto.jpg", summary: "Big cities, national parks, coastlines, and road-trip energy all come together in one huge country.", overview: ["The United States is ideal for travelers who want variety. You can move from skyline views in New York to red-rock landscapes in Arizona and still feel like you are on a completely different trip.", "It works especially well for mixed itineraries where food, culture, shopping, and nature all matter."], highlights: ["New York City and its iconic skyline", "Grand Canyon road-trip scenery", "California beaches and coastal drives", "New Orleans music and food culture"], bestFor: ["City breaks and museums", "National park adventures", "Long road trips"], relatedLink: "destinations.html", relatedLabel: "Browse More Destinations" },
+            CA: { name: "Canada", region: "North America", image: "photo-1500530855697-b586d89ba3ee.avif", summary: "Canada offers glacier lakes, mountain towns, peaceful forests, and friendly cosmopolitan cities.", overview: ["Canada feels spacious and calm, with beautiful nature woven into everyday travel. It is a strong choice for travelers who want fresh air and scenic routes.", "Vancouver, Banff, Montreal, and Quebec City each bring a different mood, from outdoor adventure to European-style charm."], highlights: ["Banff and Lake Louise", "Vancouver waterfront and mountains", "Quebec City's old streets", "Niagara Falls side trip"], bestFor: ["Scenic train or road trips", "Winter escapes", "Nature lovers"], relatedLink: "travel-guides.html", relatedLabel: "Open Travel Guides" },
+            MX: { name: "Mexico", region: "North America", image: "paris.avif", summary: "Mexico blends colorful cities, beach resorts, ancient history, and bold food in a very lively way.", overview: ["A trip to Mexico can be many different things at once: culture, coastline, art, and incredible local dishes.", "From Mexico City museums to Yucatan ruins and Pacific sunsets, it is one of the most varied travel destinations on the map."], highlights: ["Mexico City food and art scene", "Tulum and Caribbean beaches", "Chichen Itza and Mayan ruins", "Oaxaca markets and traditions"], bestFor: ["Food-focused travel", "Historic sites", "Beach holidays"], relatedLink: "topics.html", relatedLabel: "Read Related Stories" },
+            BR: { name: "Brazil", region: "South America", image: "ocean.avif", summary: "Brazil feels energetic and colorful, with rainforests, city beaches, and music-filled streets.", overview: ["Brazil stands out for its atmosphere. Whether you head to Rio, Salvador, or the Amazon, the experience is lively and full of movement.", "It is a strong match for travelers who like festivals, warm weather, and dramatic natural settings."], highlights: ["Rio de Janeiro beaches and viewpoints", "Amazon rainforest adventures", "Salvador's Afro-Brazilian culture", "Iguazu Falls excursions"], bestFor: ["Festivals and nightlife", "Nature and wildlife", "Warm-weather escapes"], relatedLink: "gallery.html", relatedLabel: "See Travel Gallery" },
+            AR: { name: "Argentina", region: "South America", image: "photo-1501554728187-ce583db33af7.avif", summary: "Argentina combines elegant cities, wine country, mountain scenery, and Patagonia's huge landscapes.", overview: ["Argentina gives you contrast. Buenos Aires feels stylish and cultural, while Patagonia feels wild, open, and dramatic.", "It is a good destination for travelers who want both urban experiences and unforgettable natural scenery."], highlights: ["Buenos Aires cafe and tango culture", "Patagonia glaciers and trekking", "Mendoza vineyards", "Bariloche lakes and mountains"], bestFor: ["Couples trips", "Scenic hikes", "Wine tasting"], relatedLink: "destinations.html", relatedLabel: "View More Places" },
+            GB: { name: "United Kingdom", region: "Europe", image: "paris.avif", summary: "The UK mixes royal history, literary cities, countryside escapes, and coastal charm.", overview: ["Travel in the United Kingdom can move easily between London landmarks, Scottish scenery, and quiet villages.", "It works well for short breaks or longer routes with castles, museums, theatre, and train travel."], highlights: ["London museums and neighborhoods", "Edinburgh castle and old town", "Lake District countryside", "Cornwall coastal views"], bestFor: ["History lovers", "Train-based travel", "City and countryside combos"], relatedLink: "blog.html", relatedLabel: "Read The Blog Hub" },
+            FR: { name: "France", region: "Europe", image: "paris.avif", summary: "France offers romantic cities, vineyard regions, elegant villages, and world-famous art and food.", overview: ["France is one of those destinations where everyday details feel beautiful, from cafe terraces to small-town markets.", "Paris is the obvious draw, but Provence, the Riviera, and wine regions add a slower and softer side."], highlights: ["Paris landmarks and museums", "Provence lavender and villages", "French Riviera coastline", "Bordeaux and Burgundy wine regions"], bestFor: ["Art and architecture", "Food and wine travel", "Romantic trips"], relatedLink: "destination-amalfi.html", relatedLabel: "Open A Coastal Guide" },
+            ES: { name: "Spain", region: "Europe", image: "paris.avif", summary: "Spain brings late-night energy, striking architecture, tapas culture, and sunny Mediterranean escapes.", overview: ["Spain feels social, warm, and visually rich. Barcelona, Madrid, Seville, and the islands all deliver very different experiences.", "It is a great choice when you want a trip that mixes food, design, beaches, and local celebration."], highlights: ["Barcelona architecture and sea views", "Madrid museums and plazas", "Seville flamenco and old quarters", "Mallorca island relaxation"], bestFor: ["Summer travel", "Food and nightlife", "Architecture fans"], relatedLink: "destinations.html", relatedLabel: "Explore Destination Ideas" },
+            IT: { name: "Italy", region: "Europe", image: "photo-1501554728187-ce583db33af7.avif", summary: "Italy is full of timeless cities, coastal villages, rich history, and some of the most loved food in the world.", overview: ["Italy works beautifully for travelers who want culture by day and memorable meals at night. Rome, Florence, Venice, and the Amalfi Coast each feel distinct.", "It is especially good for slow itineraries where you want to enjoy place, pace, and atmosphere."], highlights: ["Rome's ancient landmarks", "Florence art and Renaissance streets", "Amalfi Coast villages", "Venice canals and hidden corners"], bestFor: ["Classic Europe trips", "Food lovers", "Scenic coastlines"], relatedLink: "destination-amalfi.html", relatedLabel: "Visit Amalfi Coast Guide" },
+            DE: { name: "Germany", region: "Europe", image: "Get-Outside-Beginners-Guide-to-Hiking-MtRainier (1).webp", summary: "Germany combines fairy-tale towns, strong city culture, historic depth, and efficient travel routes.", overview: ["Germany is practical to explore and still feels rich with personality. Berlin, Munich, and the Rhine valley make a varied itinerary.", "It is well suited to travelers who want museums, castles, local food, and easy train connections."], highlights: ["Berlin history and creative districts", "Bavarian towns and mountain views", "Rhine castles and river cruises", "Christmas markets in winter"], bestFor: ["History and museums", "Train travel", "Seasonal markets"], relatedLink: "travel-guides.html", relatedLabel: "See Guide Ideas" },
+            GR: { name: "Greece", region: "Europe", image: "ocean.avif", summary: "Greece is known for island sunsets, whitewashed villages, ancient ruins, and easy Mediterranean charm.", overview: ["Greece feels bright, breezy, and relaxing. It gives you beach time, history, and beautiful views in one trip.", "Athens adds urban energy, while islands like Santorini and Naxos deliver slower days and sea air."], highlights: ["Athens and the Acropolis", "Santorini caldera views", "Crete's food and beaches", "Island hopping across the Aegean"], bestFor: ["Beach vacations", "Ancient history", "Couples travel"], relatedLink: "topic-coastal-escapes.html", relatedLabel: "Read Coastal Escapes" },
+            EG: { name: "Egypt", region: "Africa", image: "kyoto.jpg", summary: "Egypt offers iconic monuments, desert light, Nile journeys, and one of the world's oldest cultural histories.", overview: ["Egypt is powerful and memorable because the landmarks feel bigger than imagination. Cairo, Luxor, and Aswan are full of history.", "A Nile cruise or guided route makes it easier to connect the major ancient sites into one trip."], highlights: ["Pyramids of Giza", "Luxor temples and tombs", "Nile cruise between cities", "Red Sea resort add-ons"], bestFor: ["Ancient history fans", "Guided sightseeing", "Bucket-list travel"], relatedLink: "topics.html", relatedLabel: "Explore Travel Topics" },
+            MA: { name: "Morocco", region: "Africa", image: "food.webp", summary: "Morocco blends medinas, mountain routes, desert camps, patterned design, and deeply atmospheric stays.", overview: ["Morocco feels textured and sensory, from spice markets to tiled courtyards and sunset desert landscapes.", "It suits travelers who enjoy strong visual identity, local craft, and a mix of city and adventure."], highlights: ["Marrakech riads and souks", "Sahara desert camp nights", "Chefchaouen blue streets", "Atlas Mountains day trips"], bestFor: ["Design inspiration", "Market culture", "Desert experiences"], relatedLink: "topic-cultural-discovery.html", relatedLabel: "Read Cultural Discovery" },
+            ZA: { name: "South Africa", region: "Africa", image: "photo-1500530855697-b586d89ba3ee.avif", summary: "South Africa delivers safaris, coastline drives, vineyards, and dramatic mountain-and-ocean scenery.", overview: ["South Africa works for travelers who want one trip to cover many styles of travel. Cape Town, the Winelands, and safari regions all pair well together.", "It can feel adventurous and polished at the same time."], highlights: ["Cape Town and Table Mountain", "Garden Route coastal road trip", "Kruger safari experience", "Cape Winelands tastings"], bestFor: ["Wildlife trips", "Road journeys", "Scenic variety"], relatedLink: "gallery.html", relatedLabel: "Open The Gallery" },
+            KE: { name: "Kenya", region: "Africa", image: "photo-1501554728187-ce583db33af7.avif", summary: "Kenya is known for safari landscapes, wildlife viewing, and unforgettable savannah sunrises.", overview: ["Kenya is one of the strongest destinations for first-time safari travelers. It offers iconic wildlife settings and wide-open natural beauty.", "You can pair national parks with Nairobi culture or coastal beach time for a fuller itinerary."], highlights: ["Masai Mara game drives", "Amboseli views of Mount Kilimanjaro", "Nairobi cultural stops", "Diani Beach add-on"], bestFor: ["Safari first-timers", "Wildlife photography", "Nature-focused itineraries"], relatedLink: "travel-guides.html", relatedLabel: "See Planning Guides" },
+            RU: { name: "Russia", region: "Europe and Asia", image: "photo-1500530855697-b586d89ba3ee.avif", summary: "Russia is known for grand cities, onion-dome landmarks, classical arts, and vast landscapes stretching across continents.", overview: ["Russia stands out for scale and contrast. Historic city centers, dramatic architecture, and world-famous museums create a strong cultural experience.", "When people think of Russia, they often picture Moscow's Red Square, Saint Petersburg palaces, ballet, winter scenery, and the long Trans-Siberian route."], highlights: ["Moscow's Red Square and Kremlin views", "Saint Petersburg museums and canals", "The Trans-Siberian railway journey", "Lake Baikal and big natural landscapes"], bestFor: ["History and architecture", "Classic arts and museums", "Long-distance rail travel"], relatedLink: "blog.html", relatedLabel: "Read More Travel Stories" },
+            CN: { name: "China", region: "Asia", image: "kyoto.jpg", summary: "China combines ancient landmarks, mega-cities, mountain scenery, and a huge regional food culture.", overview: ["China offers scale in every direction. Historic capitals, fast-moving city districts, and mountain landscapes all feel distinct.", "It is a destination for travelers who want both cultural depth and modern urban energy."], highlights: ["Great Wall day trips", "Beijing imperial history", "Shanghai skyline and riverfront", "Zhangjiajie and Guilin scenery"], bestFor: ["Landmark-heavy trips", "Urban exploration", "Regional cuisine lovers"], relatedLink: "topic-food-cuisine.html", relatedLabel: "Explore Food And Culture" },
+            JP: { name: "Japan", region: "Asia", image: "kyoto.jpg", summary: "Japan balances calm temples, precise design, mountain scenery, and futuristic city life.", overview: ["Japan feels thoughtful and beautifully organized. It works for travelers who love detail, atmosphere, and cultural experiences that feel very distinct.", "Kyoto is a favorite for traditional streets and temples, while Tokyo adds pace, neon, and endless variety."], highlights: ["Kyoto temples and gardens", "Tokyo neighborhoods and food", "Mount Fuji views", "Onsen towns and seasonal scenery"], bestFor: ["Cultural travel", "Design lovers", "Train-based itineraries"], relatedLink: "destination-kyoto.html", relatedLabel: "Open Kyoto Guide" },
+            IN: { name: "India", region: "Asia", image: "food.webp", summary: "India is layered, colorful, spiritual, and full of unforgettable architecture, food, festivals, and landscapes.", overview: ["India is rich in contrast. One itinerary can include royal palaces, mountain regions, beaches, sacred cities, and street food scenes.", "It rewards travelers who want depth, energy, and many different styles of experience in one country."], highlights: ["Taj Mahal and Agra", "Jaipur palaces and markets", "Kerala backwaters", "Varanasi riverfront rituals"], bestFor: ["Culture-rich travel", "Food exploration", "Multi-city adventures"], relatedLink: "topic-food-cuisine.html", relatedLabel: "Read Food And Cuisine" },
+            TH: { name: "Thailand", region: "Asia", image: "photo-1505761671935-60b3a7427bad.avif", summary: "Thailand pairs golden temples, night markets, tropical islands, and easygoing travel flow.", overview: ["Thailand is approachable and rewarding for many kinds of travelers. Bangkok brings fast city energy while Chiang Mai and the islands slow things down.", "It is often chosen for its food, beaches, and good balance between comfort and adventure."], highlights: ["Bangkok temples and markets", "Chiang Mai cafes and culture", "Phuket and Krabi beaches", "Island hopping and boat days"], bestFor: ["First trips to Asia", "Budget-friendly travel", "Beach and food combos"], relatedLink: "topic-coastal-escapes.html", relatedLabel: "See Coastal Stories" },
+            VN: { name: "Vietnam", region: "Asia", image: "photo-1505761671935-60b3a7427bad.avif", summary: "Vietnam offers limestone bays, buzzing cities, layered history, and one of the most loved street-food scenes in Asia.", overview: ["Vietnam is a destination with strong flavor, visually and literally. Hanoi, Hoi An, and Ho Chi Minh City all feel different and memorable.", "It suits travelers who want scenery, food, culture, and value in the same trip."], highlights: ["Ha Long Bay cruises", "Hanoi old quarter", "Hoi An lantern-lit evenings", "Mekong Delta experiences"], bestFor: ["Food travel", "Scenic routes", "Value-focused itineraries"], relatedLink: "blog-street-food.html", relatedLabel: "Open Street Food Story" },
+            ID: { name: "Indonesia", region: "Asia", image: "photo-1505761671935-60b3a7427bad.avif", summary: "Indonesia offers island diversity, surf beaches, temples, volcanoes, and wellness-focused stays.", overview: ["Indonesia is broader than one island, but Bali often becomes the starting point because it is easy to blend culture, scenery, and relaxation there.", "The country works well for tropical trips with a more grounded and spiritual feel."], highlights: ["Bali rice terraces and beach clubs", "Ubud wellness and temples", "Komodo adventure routes", "Volcanic sunrise viewpoints"], bestFor: ["Island hopping", "Wellness escapes", "Tropical scenery"], relatedLink: "topics.html", relatedLabel: "Browse Related Topics" },
+            AU: { name: "Australia", region: "Oceania", image: "ocean.avif", summary: "Australia mixes laid-back cities, coastal road trips, reefs, deserts, and huge outdoor space.", overview: ["Australia is ideal for travelers who like open-air living, beach culture, and nature woven into everyday city life.", "Sydney, Melbourne, the Great Ocean Road, and tropical reef areas can all fit into a well-paced journey."], highlights: ["Sydney harbor and beaches", "Great Barrier Reef", "Melbourne food and laneways", "Great Ocean Road scenery"], bestFor: ["Road trips", "Coastal travel", "Outdoor-focused vacations"], relatedLink: "gallery-ocean-escapes.html", relatedLabel: "See Ocean Escapes" },
+            NZ: { name: "New Zealand", region: "Oceania", image: "photo-1500530855697-b586d89ba3ee.avif", summary: "New Zealand is all about mountain drama, lakes, film-like scenery, and active outdoor travel.", overview: ["New Zealand feels immersive because the landscapes are always close. It is a favorite for self-drive trips and travelers who want to be outside.", "Both islands offer strong scenery, with Queenstown, Milford Sound, and Rotorua among the most recognized stops."], highlights: ["Queenstown adventure base", "Milford Sound landscapes", "Rotorua geothermal areas", "South Island self-drive routes"], bestFor: ["Adventure trips", "Nature-first travel", "Epic scenery"], relatedLink: "gallery-mountain-vistas.html", relatedLabel: "Open Mountain Gallery" }
+        };
+
+        const params = new URLSearchParams(window.location.search);
+        const countryCode = params.get("country");
+        const guide = countryGuides[countryCode];
+
+        const hero = document.getElementById("countryHero");
+        const heroTitle = document.getElementById("heroTitle");
+        const heroRegion = document.getElementById("heroRegion");
+        const heroSummary = document.getElementById("heroSummary");
+        const detailContainer = document.getElementById("detailContainer");
+
+        if (!guide) {
+            hero.style.backgroundImage = "linear-gradient(rgba(45, 74, 62, 0.7), rgba(45, 74, 62, 0.85)), url('ocean.avif')";
+            detailContainer.innerHTML = `
+                <div class="empty-state">
+                    <h2>Country not found</h2>
+                    <p>Please go back to the map and click one of the highlighted countries to open its guide.</p>
+                    <div class="cta-row" style="justify-content:center;">
+                        <a href="my-map.html" class="btn-primary">Back To My Map</a>
+                        <a href="destinations.html" class="btn-secondary">See Destinations</a>
+                    </div>
+                </div>
+            `;
+        } else {
+            document.title = `${guide.name} Guide | WanderWay`;
+            hero.style.backgroundImage = `url('${guide.image}')`;
+            heroTitle.textContent = guide.name;
+            heroRegion.textContent = guide.region;
+            heroSummary.textContent = guide.summary;
+
+            const highlightsMarkup = guide.highlights.map(item => `
+                <div class="highlight-card">
+                    <h3>${item}</h3>
+                    <p>Great for travelers who want a strong local feel and memorable experiences.</p>
+                </div>
+            `).join("");
+
+            const bestForMarkup = guide.bestFor.map(item => `<li>${item}</li>`).join("");
+            const overviewMarkup = guide.overview.map(item => `<p>${item}</p>`).join("");
+
+            detailContainer.innerHTML = `
+                <div class="detail-grid">
+                    <div class="detail-panel">
+                        <a href="my-map.html" class="back-link"><i class="fas fa-arrow-left"></i>Back to the map</a>
+                        <div class="story-copy">
+                            <h2>What makes ${guide.name} special?</h2>
+                            ${overviewMarkup}
+                        </div>
+                        <div class="highlight-grid">
+                            ${highlightsMarkup}
+                        </div>
+                    </div>
+                    <div class="detail-sidebar">
+                        <div class="detail-sidebar-card">
+                            <h3>Best for</h3>
+                            <ul class="info-list">
+                                ${bestForMarkup}
+                            </ul>
+                        </div>
+                        <div class="detail-sidebar-card">
+                            <h3>Related next step</h3>
+                            <p>Keep exploring with another page from WanderWay that matches this travel mood.</p>
+                            <div class="cta-row">
+                                <a href="${guide.relatedLink}" class="btn-primary">${guide.relatedLabel}</a>
+                                <a href="my-map.html" class="btn-secondary">Choose Another Country</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+    </script>
+</body>
+</html>

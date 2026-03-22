@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WanderWay - Your Travel Blog</title>
+    <link rel="icon" type="image/png" href="icons8-airplane-take-off-100.png">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="icons8-airplane-take-off-100.png" alt="WanderWay Logo" class="logo-img">
+                Wander<span>Way</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link active">Home</a></li>
+                <li><a href="destinations.html" class="nav-link">Destinations</a></li>
+                <li><a href="blog.html" class="nav-link">Blog Hub</a></li>
+                <li><a href="topics.html" class="nav-link">Topics</a></li>
+                <li><a href="travel-guides.html" class="nav-link">Guides</a></li>
+                <li><a href="my-map.html" class="nav-link">My Map</a></li>
+                <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="hero hero-home-video">
+        <div class="hero-overlay hero-overlay-home"></div>
+        <div class="hero-content">
+            <p class="hero-kicker">Luxury Travel Films</p>
+            <h1 class="hero-title">Discover the World</h1>
+            <p class="hero-subtitle">A cinematic travel homepage inspired by your reference style, with rich atmosphere, elegant layering, and a refined luxury feel instead of playing the actual video.</p>
+            <a href="#destinations" class="btn-primary">Start Your Journey</a>
+        </div>
+        <div class="scroll-indicator">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </section>
+
+    <section id="destinations" class="destinations">
+        <div class="section-header">
+            <h2 class="section-title">Popular Destinations</h2>
+            <p class="section-subtitle">Explore our most loved places around the world</p>
+        </div>
+        
+        <div class="carousel-container">
+            <div class="carousel-track">
+                <div class="destination-card">
+                    <div class="card-image">
+                        <img src="kyoto.jpg" alt="Japan">
+                        <div class="card-badge">Featured</div>
+                    </div>
+                    <div class="card-content">
+                        <h3>Kyoto, Japan</h3>
+                        <p>Experience ancient temples and cherry blossoms</p>
+                        <div class="card-meta">
+                            <span><i class="fas fa-map-marker-alt"></i> Japan</span>
+                            <span><i class="fas fa-star"></i> 4.9</span>
+                        </div>
+                        <a href="destination-kyoto.html" class="btn-secondary">Explore</a>
+                    </div>
+                </div>
+                
+                <div class="destination-card">
+                    <div class="card-image">
+                        <img src="ocean.avif" alt="Maldives">
+                    </div>
+                    <div class="card-content">
+                        <h3>Maldives</h3>
+                        <p>Paradise islands with crystal clear waters</p>
+                        <div class="card-meta">
+                            <span><i class="fas fa-map-marker-alt"></i> Maldives</span>
+                            <span><i class="fas fa-star"></i> 4.8</span>
+                        </div>
+                        <a href="destination-maldives.html" class="btn-secondary">Explore</a>
+                    </div>
+                </div>
+                
+                <div class="destination-card">
+                    <div class="card-image">
+                        <img src="photo-1500530855697-b586d89ba3ee.avif" alt="Swiss Alps">
+                    </div>
+                    <div class="card-content">
+                        <h3>Swiss Alps</h3>
+                        <p>Majestic mountains and pristine nature</p>
+                        <div class="card-meta">
+                            <span><i class="fas fa-map-marker-alt"></i> Switzerland</span>
+                            <span><i class="fas fa-star"></i> 4.9</span>
+                        </div>
+                        <a href="travel-guides.html" class="btn-secondary">Explore</a>
+                    </div>
+                </div>
+                
+                <div class="destination-card">
+                    <div class="card-image">
+                        <img src="photo-1505761671935-60b3a7427bad.avif" alt="Bali">
+                    </div>
+                    <div class="card-content">
+                        <h3>Bali, Indonesia</h3>
+                        <p>Spiritual temples and lush rice terraces</p>
+                        <div class="card-meta">
+                            <span><i class="fas fa-map-marker-alt"></i> Indonesia</span>
+                            <span><i class="fas fa-star"></i> 4.7</span>
+                        </div>
+                        <a href="topics.html" class="btn-secondary">Explore</a>
+                    </div>
+                </div>
+                
+                <div class="destination-card">
+                    <div class="card-image">
+                        <img src="photo-1501554728187-ce583db33af7.avif" alt="Amalfi Coast">
+                    </div>
+                    <div class="card-content">
+                        <h3>Amalfi Coast, Italy</h3>
+                        <p>Colorful seaside towns, sunlit terraces, and elegant coastal views</p>
+                        <div class="card-meta">
+                            <span><i class="fas fa-map-marker-alt"></i> Italy</span>
+                            <span><i class="fas fa-star"></i> 4.8</span>
+                        </div>
+                        <a href="destination-amalfi.html" class="btn-secondary">Explore</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="carousel-controls">
+                <button class="carousel-btn prev-btn"><i class="fas fa-chevron-left"></i></button>
+                <button class="carousel-btn next-btn"><i class="fas fa-chevron-right"></i></button>
+            </div>
+            
+            <div class="carousel-dots">
+                <span class="dot active"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+        </div>
+    </section>
+
+    <section id="blog" class="blog">
+        <div class="section-header">
+            <h2 class="section-title">Latest Stories</h2>
+            <p class="section-subtitle">Travel tips, guides, and adventures from our writers</p>
+        </div>
+        
+        <div class="blog-grid">
+            <article class="blog-card">
+                <div class="blog-image">
+                    <img src="food.webp" alt="Travel Tips">
+                    <div class="blog-category">Slow Travel</div>
+                </div>
+                <div class="blog-content">
+                    <h3>Why Slow Travel Creates Better Memories</h3>
+                    <p>Staying longer in one place reveals the quiet details most travelers miss.</p>
+                    <div class="blog-meta">
+                        <span><i class="fas fa-user"></i> Elena</span>
+                        <span><i class="fas fa-calendar"></i> Jan 12, 2026</span>
+                    </div>
+                    <a href="blog-slow-travel.html" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+            
+            <article class="blog-card">
+                <div class="blog-image">
+                    <img src="Madurai-Street-Food-Tour-India-Travelling-Foodie-7.webp" alt="Adventure">
+                    <div class="blog-category">Europe</div>
+                </div>
+                <div class="blog-content">
+                    <h3>A Quiet Weekend Along the Amalfi Coast</h3>
+                    <p>A gentle guide to scenic viewpoints and peaceful corners.</p>
+                    <div class="blog-meta">
+                        <span><i class="fas fa-user"></i> Elena</span>
+                        <span><i class="fas fa-calendar"></i> Feb 03, 2026</span>
+                    </div>
+                    <a href="blog-amalfi-weekend.html" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+            
+            <article class="blog-card">
+                <div class="blog-image">
+                    <img src="kyoto-garden-vl-peter-cohen-1920x1080.webp" alt="Culture">
+                    <div class="blog-category">Culture</div>
+                </div>
+                <div class="blog-content">
+                    <h3>Five Peaceful Mornings in Kyoto</h3>
+                    <p>From temple gardens to riverside walks in Kyoto.</p>
+                    <div class="blog-meta">
+                        <span><i class="fas fa-user"></i> Elena</span>
+                        <span><i class="fas fa-calendar"></i> Feb 18, 2026</span>
+                    </div>
+                    <a href="blog-kyoto-mornings.html" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="about-container">
+            <div class="about-image">
+                <img src="pexels-ingo-1694649.jpg" alt="About Us">
+            </div>
+            <div class="about-content">
+                <h2 class="section-title">About WanderWay</h2>
+                <p>I love travel! I share calm and peaceful places that help you feel rested. I want to help you plan simple and happy trips.</p>
+                <p>My goal is to create a nice travel website with beautiful pictures, easy tips, and real stories. This helps you plan simple and fun adventures.</p>
+                <div class="about-stats">
+                    <div class="stat">
+                        <span class="stat-number">50+</span>
+                        <span class="stat-label">Destinations</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">100+</span>
+                        <span class="stat-label">Travel Stories</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">10K+</span>
+                        <span class="stat-label">Followers</span>
+                    </div>
+                </div>
+                <a href="about.html" class="btn-primary">Learn More</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="newsletter">
+        <div class="newsletter-content">
+            <h2>Stay Updated</h2>
+            <p>Subscribe to our newsletter for the latest travel guides and tips</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Enter your email" required>
+                <button type="submit" class="btn-primary">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="section-header">
+            <h2 class="section-title">Get In Touch</h2>
+            <p class="section-subtitle">Have questions? We'd love to hear from you!</p>
+        </div>
+        
+        <div class="contact-container">
+            <div class="contact-info">
+                <div class="info-item">
+                    <i class="fas fa-envelope"></i>
+                    <h3>Email</h3>
+                    <p>hellowanderway@gmail.com</p>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>Location</h3>
+                    <p>Chennai, Tamilnadu</p>
+                </div>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-pinterest"></i></a>
+                </div>
+            </div>
+            
+            <form class="contact-form">
+                <div class="form-group">
+                    <input type="text" placeholder="Your Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" placeholder="Your Email" required>
+                </div>
+                <div class="form-group">
+                    <select>
+                        <option value="">Select Topic</option>
+                        <option value="general">General Inquiry</option>
+                        <option value="collaboration">Collaboration</option>
+                        <option value="feedback">Feedback</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <textarea placeholder="Your Message" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="btn-primary">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <a href="index.html" class="logo">
+                    <img src="icons8-airplane-take-off-100.png" alt="WanderWay Logo" class="logo-img">
+                    Wander<span>Way</span>
+                </a>
+                <p>Your gateway to world exploration</p>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="destinations.html">Destinations</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Destinations</h4>
+                <ul>
+                    <li><a href="destination-maldives.html">Maldives</a></li>
+                    <li><a href="destination-kyoto.html">Kyoto</a></li>
+                    <li><a href="destination-amalfi.html">Amalfi Coast</a></li>
+                    <li><a href="travel-guides.html">Swiss Alps</a></li>
+                    <li><a href="topics.html">Bali</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#">FAQs</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 WanderWay. All rights reserved. Made with <i class="fas fa-heart"></i> for travelers</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+</html>

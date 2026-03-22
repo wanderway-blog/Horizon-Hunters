@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="icons8-airplane-take-off-100.png">
+    <title>My Map | WanderWay</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .map-container {
+            position: relative;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #1a1a2e;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            overflow: hidden;
+            min-height: 500px;
+        }
+        
+        .world-map {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            min-height: 460px;
+        }
+        
+        .world-map svg {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .world-map path {
+            fill: transparent;
+            stroke: #4a90a4;
+            stroke-width: 0.5;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .world-map path:hover {
+            fill: rgba(255, 183, 77, 0.4);
+            stroke: #ffb74d;
+            stroke-width: 1;
+            filter: drop-shadow(0 0 15px rgba(255, 183, 77, 1));
+        }
+        
+        .map-card {
+            position: absolute;
+            display: none;
+            width: 280px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            overflow: hidden;
+            z-index: 100;
+            animation: fadeIn 0.3s ease;
+            cursor: pointer;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .map-card-img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+        
+        .map-card-content {
+            padding: 15px;
+        }
+        
+        .map-card-title {
+            font-size: 1.2rem;
+            color: #333;
+            margin-bottom: 8px;
+        }
+        
+        .map-card-desc {
+            font-size: 0.9rem;
+            color: #666;
+            line-height: 1.4;
+        }
+        
+        .map-card-link {
+            display: inline-block;
+            margin-top: 10px;
+            color: #4a90a4;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .map-card-link i {
+            margin-left: 6px;
+        }
+        
+        .map-instructions {
+            text-align: center;
+            padding: 20px;
+            background: var(--surface-color);
+            border-radius: 12px;
+            margin-bottom: 30px;
+        }
+        
+        .map-instructions h3 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .map-instructions p {
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="icons8-airplane-take-off-100.png" alt="WanderWay Logo" class="logo-img">
+                Wander<span>Way</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="destinations.html" class="nav-link">Destinations</a></li>
+                <li><a href="blog.html" class="nav-link">Blog Hub</a></li>
+                <li><a href="topics.html" class="nav-link">Topics</a></li>
+                <li><a href="travel-guides.html" class="nav-link">Guides</a></li>
+                <li><a href="my-map.html" class="nav-link active">My Map</a></li>
+                <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Hero -->
+    <section class="page-hero page-hero-map">
+        <div class="page-hero-content">
+            <h1>My Map</h1>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Explore Destinations</h2>
+                <p class="section-subtitle">Explore our destinations around the world. Move your mouse over the map to see amazing places.</p>
+            </div>
+            
+            <div class="map-instructions">
+                <h3><i class="fas fa-mouse-pointer"></i> Hover And Click The Map</h3>
+                <p>Move your mouse over different countries to preview them, then click a country to open a full page with related details.</p>
+            </div>
+            
+            <div class="map-container">
+                <div class="world-map" id="worldMapContainer"></div>
+                
+                <div class="map-card" id="mapCard">
+                    <img src="" alt="" class="map-card-img" id="cardImg">
+                    <div class="map-card-content">
+                        <h3 class="map-card-title" id="cardTitle"></h3>
+                        <p class="map-card-desc" id="cardDesc"></p>
+                        <a href="" class="map-card-link" id="cardLink">Open Country Guide <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="about" style="background-color: var(--surface-color);">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Our Featured Destinations</h2>
+                <p class="section-subtitle">Click on any destination below to learn more.</p>
+            </div>
+            <div class="grid">
+                <div class="card">
+                    <div class="card-img">
+                        <img src="ocean.avif" alt="Maldives">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Maldives</h3>
+                        <p class="card-desc">Beautiful islands with clear blue water and white sandy beaches.</p>
+                        <a href="destination-maldives.html" class="btn-secondary">View Guide</a>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-img">
+                        <img src="photo-1501554728187-ce583db33af7.avif" alt="Italy">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Amalfi Coast, Italy</h3>
+                        <p class="card-desc">Colorful coastal towns with amazing food and views.</p>
+                        <a href="destination-amalfi.html" class="btn-secondary">View Guide</a>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-img">
+                        <img src="kyoto.jpg" alt="Japan">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Kyoto, Japan</h3>
+                        <p class="card-desc">Ancient temples and traditional Japanese culture.</p>
+                        <a href="destination-kyoto.html" class="btn-secondary">View Guide</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter">
+        <div class="newsletter-content">
+            <h2>Stay Updated</h2>
+            <p>Subscribe to our newsletter for the latest travel guides and tips</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Enter your email" required>
+                <button type="submit" class="btn-primary">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <a href="index.html" class="logo">
+                    <img src="icons8-airplane-take-off-100.png" alt="WanderWay Logo" class="logo-img">
+                    Wander<span>Way</span>
+                </a>
+                <p>Your gateway to world exploration</p>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="destinations.html">Destinations</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Destinations</h4>
+                <ul>
+                    <li><a href="destination-maldives.html">Maldives</a></li>
+                    <li><a href="destination-kyoto.html">Kyoto</a></li>
+                    <li><a href="destination-amalfi.html">Amalfi Coast</a></li>
+                    <li><a href="travel-guides.html">Swiss Alps</a></li>
+                    <li><a href="topics.html">Bali</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#">FAQs</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 WanderWay. All rights reserved. Made with <i class="fas fa-heart"></i> for travelers</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        const buildCountryLink = (countryCode) => `map-detail.html?country=${countryCode}`;
+
+        const destinationData = {
+            'US': { name: 'USA', desc: 'Land of opportunity with diverse landscapes, from beaches to mountains.', img: 'body_image_web_1920x1200_1_74d35a1073.webp', link: buildCountryLink('US') },
+            'CA': { name: 'Canada', desc: 'Vast wilderness, stunning mountains, and vibrant cities.', img: 'photo-1500530855697-b586d89ba3ee.avif', link: buildCountryLink('CA') },
+            'MX': { name: 'Mexico', desc: 'Vibrant culture, ancient ruins, and delicious food await.', img: 'photo-1501554728187-ce583db33af7.avif', link: buildCountryLink('MX') },
+            'BR': { name: 'Brazil', desc: 'Amazon rainforest, beautiful beaches, and the famous Rio carnival.', img: 'ocean.avif', link: buildCountryLink('BR') },
+            'AR': { name: 'Argentina', desc: 'Tango, Patagonia glaciers, and vibrant Buenos Aires.', img: 'photo-1501554728187-ce583db33af7.avif', link: buildCountryLink('AR') },
+            'GB': { name: 'United Kingdom', desc: 'Historic castles, royal palaces, and charming villages.', img: 'paris.avif', link: buildCountryLink('GB') },
+            'FR': { name: 'France', desc: 'Famous for the Eiffel Tower, delicious wine, and romantic cities.', img: 'paris.avif', link: buildCountryLink('FR') },
+            'ES': { name: 'Spain', desc: 'Flamenco dancing, Gaudi architecture, and sunny beaches.', img: 'photo-1501554728187-ce583db33af7.avif', link: buildCountryLink('ES') },
+            'IT': { name: 'Italy', desc: 'Ancient Rome, Renaissance art, and the beautiful Amalfi Coast.', img: 'photo-1501554728187-ce583db33af7.avif', link: buildCountryLink('IT') },
+            'DE': { name: 'Germany', desc: 'Historic castles, beer gardens, and efficient engineering.', img: 'Get-Outside-Beginners-Guide-to-Hiking-MtRainier (1).webp', link: buildCountryLink('DE') },
+            'GR': { name: 'Greece', desc: 'Ancient ruins, beautiful islands, and amazing Mediterranean food.', img: 'photo-1501554728187-ce583db33af7.avif', link: buildCountryLink('GR') },
+            'EG': { name: 'Egypt', desc: 'Pyramids, ancient pharaohs, and the River Nile.', img: 'pexels-francesco-ungaro-2325446.jpg', link: buildCountryLink('EG') },
+            'MA': { name: 'Morocco', desc: 'Medinas, deserts, and vibrant souks.', img: 'pexels-francesco-ungaro-2325446.jpg', link: buildCountryLink('MA') },
+            'ZA': { name: 'South Africa', desc: 'Wild safaris, beautiful landscapes, and vibrant cities.', img: 'photo-1500530855697-b586d89ba3ee.avif', link: buildCountryLink('ZA') },
+            'KE': { name: 'Kenya', desc: 'Safari adventures, Masai Mara, and diverse wildlife.', img: 'photo-1501554728187-ce583db33af7.avif', link: buildCountryLink('KE') },
+            'RU': { name: 'Russia', desc: 'Vast landscapes, rich history, and diverse cultures.', img: 'photo-1500530855697-b586d89ba3ee.avif', link: buildCountryLink('RU') },
+            'CN': { name: 'China', desc: 'Great Wall, pandas, and thousands of years of history.', img: 'kyoto.jpg', link: buildCountryLink('CN') },
+            'JP': { name: 'Japan', desc: 'Ancient temples, modern cities, and unique cultural experiences.', img: 'kyoto.jpg', link: buildCountryLink('JP') },
+            'IN': { name: 'India', desc: 'Taj Mahal, colorful festivals, and diverse cultures.', img: 'food.webp', link: buildCountryLink('IN') },
+            'TH': { name: 'Thailand', desc: 'Beautiful temples, delicious food, and tropical islands.', img: 'photo-1505761671935-60b3a7427bad.avif', link: buildCountryLink('TH') },
+            'VN': { name: 'Vietnam', desc: 'Stunning landscapes, rich history, and delicious cuisine.', img: 'photo-1505761671935-60b3a7427bad.avif', link: buildCountryLink('VN') },
+            'ID': { name: 'Indonesia', desc: 'Bali beaches, ancient temples, and volcanic landscapes.', img: 'photo-1505761671935-60b3a7427bad.avif', link: buildCountryLink('ID') },
+            'AU': { name: 'Australia', desc: 'Great Barrier Reef, unique wildlife, and stunning beaches.', img: 'ocean.avif', link: buildCountryLink('AU') },
+            'NZ': { name: 'New Zealand', desc: 'Lord of the Rings scenery, Maori culture, and adventure sports.', img: 'photo-1500530855697-b586d89ba3ee.avif', link: buildCountryLink('NZ') }
+        };
+
+        let hideCardTimer = null;
+
+        const showMapCard = () => {
+            clearTimeout(hideCardTimer);
+            mapCard.style.display = 'block';
+        };
+
+        const hideMapCard = () => {
+            hideCardTimer = setTimeout(() => {
+                mapCard.style.display = 'none';
+            }, 120);
+        };
+        
+        fetch('worldLow.svg')
+            .then(response => response.text())
+            .then(svgContent => {
+                const container = document.getElementById('worldMapContainer');
+                container.innerHTML = svgContent;
+                
+                const svg = container.querySelector('svg');
+                if (svg) {
+                    svg.setAttribute('width', '100%');
+                    svg.setAttribute('height', '100%');
+                    svg.style.display = 'block';
+                }
+                
+                const paths = container.querySelectorAll('path');
+                paths.forEach(path => {
+                    path.style.fill = 'transparent';
+                    path.style.stroke = '#4a90a4';
+                    path.style.strokeWidth = '0.5';
+                    path.style.cursor = 'pointer';
+                    path.style.transition = 'all 0.3s ease';
+                    
+                    path.addEventListener('mouseenter', (e) => {
+                        const countryId = path.getAttribute('id');
+                        const data = destinationData[countryId];
+                        
+                        if (data) {
+                            path.style.fill = 'rgba(255, 183, 77, 0.4)';
+                            path.style.stroke = '#ffb74d';
+                            path.style.strokeWidth = '1';
+                            path.style.filter = 'drop-shadow(0 0 15px rgba(255, 183, 77, 1))';
+                            
+                            cardTitle.textContent = data.name;
+                            cardDesc.textContent = data.desc;
+                            cardImg.src = data.img;
+                            cardImg.alt = data.name;
+                            cardLink.href = data.link;
+                            
+                            showMapCard();
+                        } else {
+                            path.style.fill = 'rgba(74, 144, 164, 0.3)';
+                            path.style.stroke = '#4a90a4';
+                            path.style.strokeWidth = '1';
+                        }
+                    });
+                    
+                    path.addEventListener('mousemove', (e) => {
+                        const rect = document.querySelector('.map-container').getBoundingClientRect();
+                        let x = e.clientX - rect.left + 20;
+                        let y = e.clientY - rect.top + 20;
+                        
+                        if (x + 280 > rect.width) {
+                            x = x - 300;
+                        }
+                        if (y + 250 > rect.height) {
+                            y = y - 260;
+                        }
+                        
+                        mapCard.style.left = x + 'px';
+                        mapCard.style.top = y + 'px';
+                    });
+                    
+                    path.addEventListener('mouseleave', () => {
+                        path.style.fill = 'transparent';
+                        path.style.stroke = '#4a90a4';
+                        path.style.strokeWidth = '0.5';
+                        path.style.filter = 'none';
+                        hideMapCard();
+                    });
+
+                    path.addEventListener('click', () => {
+                        const countryId = path.getAttribute('id');
+                        const data = destinationData[countryId];
+
+                        if (data) {
+                            window.location.href = data.link;
+                        }
+                    });
+                });
+            })
+            .catch(error => {
+                console.error('Error loading SVG:', error);
+                document.getElementById('worldMapContainer').innerHTML = '<p style="color:white;text-align:center;padding:50px;">Error loading map</p>';
+            });
+        
+        const mapCard = document.getElementById('mapCard');
+        const cardImg = document.getElementById('cardImg');
+        const cardTitle = document.getElementById('cardTitle');
+        const cardDesc = document.getElementById('cardDesc');
+        const cardLink = document.getElementById('cardLink');
+
+        mapCard.addEventListener('mouseenter', () => {
+            clearTimeout(hideCardTimer);
+        });
+
+        mapCard.addEventListener('mouseleave', () => {
+            hideMapCard();
+        });
+
+        mapCard.addEventListener('click', (event) => {
+            if (!event.target.closest('a') && cardLink.href) {
+                window.location.href = cardLink.href;
+            }
+        });
+    </script>
+</body>
+</html>
