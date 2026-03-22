@@ -12,26 +12,30 @@ function revealPage() {
 }
 
 function createArrivalIntro() {
-    if (prefersReducedMotion || !isHomePage || document.querySelector('.arrival-intro')) {
+    if (prefersReducedMotion || !isHomePage) {
         return;
     }
 
-    const intro = document.createElement('div');
-    intro.className = 'arrival-intro';
-    intro.setAttribute('aria-hidden', 'true');
-    intro.innerHTML = `
-        <div class="arrival-intro__panel arrival-intro__panel--left"></div>
-        <div class="arrival-intro__panel arrival-intro__panel--right"></div>
-        <div class="arrival-intro__content">
-            <div class="arrival-intro__brand">
-                <img src="icons8-airplane-take-off-100.png" alt="" class="arrival-intro__icon">
-                <span>Wander</span>Way
-            </div>
-            <p class="arrival-intro__subtitle">Arrival Experience</p>
-        </div>
-    `;
+    let intro = document.querySelector('.arrival-intro');
 
-    document.body.prepend(intro);
+    if (!intro) {
+        intro = document.createElement('div');
+        intro.className = 'arrival-intro';
+        intro.setAttribute('aria-hidden', 'true');
+        intro.innerHTML = `
+            <div class="arrival-intro__panel arrival-intro__panel--left"></div>
+            <div class="arrival-intro__panel arrival-intro__panel--right"></div>
+            <div class="arrival-intro__content">
+                <div class="arrival-intro__brand">
+                    <img src="icons8-airplane-take-off-100.png" alt="" class="arrival-intro__icon">
+                    <span>Wander</span>Way
+                </div>
+                <p class="arrival-intro__subtitle">Arrival Experience</p>
+            </div>
+        `;
+        document.body.prepend(intro);
+    }
+
     document.body.classList.add('intro-playing');
 
     window.setTimeout(() => {
