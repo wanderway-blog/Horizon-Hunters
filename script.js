@@ -5,6 +5,11 @@ const navbar = document.querySelector('.navbar');
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const introDuration = 2300;
 const isHomePage = /(?:^|\\|\/)index\.html$/i.test(window.location.pathname) || window.location.pathname === '/' || window.location.pathname === '';
+const pageRevealDelay = !prefersReducedMotion && isHomePage ? introDuration : 380;
+
+function revealPage() {
+    document.body.classList.add('page-loaded');
+}
 
 function createArrivalIntro() {
     if (prefersReducedMotion || !isHomePage || document.querySelector('.arrival-intro')) {
@@ -60,12 +65,10 @@ document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', 
 createArrivalIntro();
 
 window.addEventListener('load', () => {
-    document.body.classList.add('page-loaded');
+    window.setTimeout(revealPage, pageRevealDelay);
 });
 
-window.setTimeout(() => {
-    document.body.classList.add('page-loaded');
-}, prefersReducedMotion ? 0 : 380);
+window.setTimeout(revealPage, pageRevealDelay);
 
 // Carousel functionality
 const carouselTrack = document.querySelector('.carousel-track');
