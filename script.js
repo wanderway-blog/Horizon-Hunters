@@ -5,7 +5,7 @@ const navbar = document.querySelector('.navbar');
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const introDuration = 2300;
 const isHomePage = /(?:^|\\|\/)index\.html$/i.test(window.location.pathname) || window.location.pathname === '/' || window.location.pathname === '';
-const pageRevealDelay = !prefersReducedMotion && isHomePage ? introDuration : 380;
+const pageRevealDelay = isHomePage ? (prefersReducedMotion ? 0 : introDuration) : 380;
 
 function revealPage() {
     document.body.classList.add('page-loaded');
